@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
 	private bool gameStarted = false;
 
 	[SerializeField] private GameObject mainMenu;
-	[SerializeField] private Text totalScorelbl;
+	[SerializeField] public Text totalScorelbl;
+	[SerializeField] private Text totalScorelblGO;
 	[SerializeField] private GameObject GameOverScreen;
 	[SerializeField] private AudioSource mainMenuTheme;
 	[SerializeField] private AudioSource levelTheme;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
 			totalscore += 1 * (Time.deltaTime / 3);
 			float finalScore = Mathf.Round(totalscore);
 			totalScorelbl.text = finalScore.ToString();
+			totalScorelblGO = totalScorelbl;
 			yield return null;
 		}
 
@@ -90,7 +92,9 @@ public class GameManager : MonoBehaviour
 		playerActive = false;
 		levelTheme.Stop();
 		gameOverTheme.Play();
-		
+		totalScorelbl.rectTransform.localPosition = new Vector3(0f, -462f, 0f);
+
+
 	}
 
 	public void PlayerStartedGame()
@@ -115,7 +119,8 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene("SampleScene");
 		mainMenu.SetActive(true);
 		gameOverTheme.Stop();
-		
+		Destroy(totalScorelbl);
+
 	}
 
 
