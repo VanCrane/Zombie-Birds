@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 			Destroy(gameObject);
 		}
 	
-		DontDestroyOnLoad(gameObject);
+
 
 		Assert.IsNotNull (mainMenu);
 	}
