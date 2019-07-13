@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private GameObject mainMenu;
 	[SerializeField] private Text totalScorelbl;
 	[SerializeField] private GameObject GameOverScreen;
+	[SerializeField] private AudioSource mainMenuTheme;
+	[SerializeField] private AudioSource levelTheme;
+	[SerializeField] private AudioSource gameOverTheme;
 
 	private float totalscore = 0f;
 	
@@ -57,7 +60,7 @@ public class GameManager : MonoBehaviour
 	// Start is called before the first frame update
 	void Start()
     {
-		
+
     }
 
     // Update is called once per frame
@@ -85,6 +88,8 @@ public class GameManager : MonoBehaviour
 		GameOverScreen.SetActive(true);
 		gameStarted = false;
 		playerActive = false;
+		levelTheme.Stop();
+		gameOverTheme.Play();
 		
 	}
 
@@ -100,11 +105,17 @@ public class GameManager : MonoBehaviour
 		mainMenu.SetActive(false);
 		gameStarted = true;
 		GameOverScreen.SetActive(false);
+		mainMenuTheme.Stop();
+		levelTheme.Play();
 	}
 
 	public void Replay()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		GameOverScreen.SetActive(false);
+		SceneManager.LoadScene("SampleScene");
+		mainMenu.SetActive(true);
+		gameOverTheme.Stop();
+		
 	}
 
 
