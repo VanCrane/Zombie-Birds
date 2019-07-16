@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] private AudioSource mainMenuTheme;
 	[SerializeField] private AudioSource levelTheme;
 	[SerializeField] private AudioSource gameOverTheme;
+	[SerializeField] private AudioSource screamOfDeath;
 
 	private float totalscore = 0f;
 	
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
 		levelTheme.Stop();
 		gameOverTheme.Play();
 		totalScorelbl.rectTransform.localPosition = new Vector3(0f, -462f, 0f);
+		screamOfDeath.Play();
 
 
 	}
@@ -120,6 +122,7 @@ public class GameManager : MonoBehaviour
 		mainMenu.SetActive(true);
 		gameOverTheme.Stop();
 		Destroy(totalScorelbl);
+		
 
 	}
 
